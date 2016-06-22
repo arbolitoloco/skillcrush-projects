@@ -48,7 +48,34 @@ puts "Currently in #{answer}: #{temp} and #{condition}!"
 #puts weather.forecast.inspect
 
 # Methods: icon, temperature, starts_at, ends_at(YYYY-MM-DD)
+today = Time.new.day 
+tomorrow = Time.now.strftime("%d").to_i + 1
+
+puts "today " + today.to_s + " and tomorrow " + tomorrow.to_s
+
+# if weather.forecast[0].starts_at.strftime("%d").to_i === tomorrow
+# 	puts "Tomorrow"
+# else
+# 	puts 
+# end
+
+# puts weather.forecast[0].starts_at.strftime("%d")
 
 weather.forecast.each do |item|
-	puts item.starts_at.to_s + " to " + item.ends_at.to_s + " is going to be " + item.icon + ", with a low of " + item.low + " and a high of " + item.high
+	if item.starts_at.strftime("%d").to_i === tomorrow.to_i
+		item_day = "Tomorrow"
+	else
+		item_day = item.starts_at.strftime("%A")
+	end
+
+	puts item_day + "'s forecast is: " + item.icon + ", with a low of " + item.low + " and a high of " + item.high + " degrees Celsius."
 end
+
+
+# weather.forecast.each do |item|
+# 	if  today + 1 == first_forecast_date
+# 		puts "Tomorrow's forecast is: " + item.icon + ", with a low of " + item.low + " and a high of " + item.high + " degrees Celsius "
+# 	else
+# 		puts item.ends_at.strftime("%A").to_s + "'s forecast is: " + item.icon + ", with a low of " + item.low + " and a high of " + item.high + " degrees Celsius " 
+# 	end
+# end
