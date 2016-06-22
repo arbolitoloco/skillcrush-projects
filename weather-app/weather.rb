@@ -11,9 +11,10 @@ require 'barometer'
 # STEP 1: USER INPUTS THEIR LOCATION
 # The user will tell you where they are by submitting their zipcode, 
 # city, landmark or Woe ID!
-puts "What is your location? Provide your zipcode, city, landmark or Woe ID."
-answer = gets.capitalize
-puts answer
+#puts "What is your location? Provide your zipcode, city, landmark or Woe ID."
+#answer = gets.capitalize
+#puts answer
+answer = "Paris"
 
 # STEP 2: YOU USE A PUBLIC API TO FIND OUT WHAT THE WEATHER IS IN 
 # THEIR AREA
@@ -25,7 +26,7 @@ weather = barometer.measure
 result = weather.current
 
 # Puts all methods and properties in weather
-puts result.inspect
+#puts weather.current.inspect
 
 # STEP 3: DEPENDING ON THE WEATHER, YOU WILL SERVE THEM ONE OF THE 
 # FOLLOWING SCREENS
@@ -38,6 +39,16 @@ puts result.inspect
 condition = result.icon
 
 # Temperature
-temperature = result.temperature
+temp = result.temperature
 
-puts "Currently in #{answer}: #{temperature} and #{condition}!"
+puts "Currently in #{answer}: #{temp} and #{condition}!"
+
+# Part II. Use your gem to figure out the forecast for the next
+# five days.
+#puts weather.forecast.inspect
+
+# Methods: icon, temperature, starts_at, ends_at(YYYY-MM-DD)
+
+weather.forecast.each do |item|
+	puts item.starts_at.to_s + " to " + item.ends_at.to_s + " is going to be " + item.icon + ", with a low of " + item.low + " and a high of " + item.high
+end
